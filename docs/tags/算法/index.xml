@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on CSemy&#39;s blog</title>
-    <link>https://Blinkion.github.io/posts/</link>
-    <description>Recent content in Posts on CSemy&#39;s blog</description>
+    <title>算法 on CSemy&#39;s blog</title>
+    <link>https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on CSemy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Blinkion.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>每日一题：没有上司的舞会</title>
       <link>https://Blinkion.github.io/posts/2025-03-07-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/</link>
@@ -94,21 +94,6 @@ int main()
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;
 &lt;p&gt;​	君埋泉下泥销骨，我寄人间雪满头。&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>缘起</title>
-      <link>https://Blinkion.github.io/posts/2025-03-07-%E7%BC%98%E8%B5%B7/</link>
-      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://Blinkion.github.io/posts/2025-03-07-%E7%BC%98%E8%B5%B7/</guid>
-      <description>&lt;h1 id=&#34;缘起在人群中看你缘落看你在人群中&#34;&gt;缘起在人群中看你，缘落看你在人群中&lt;/h1&gt;
-&lt;p&gt;​	今天历尽千辛万苦（主要是人太菜），终于把博客搞好了，去年刚开学就犹豫要不要搞一个，思来想去，一直拖到了现在，以后争取每日更新，鞭策自己。
-​	追风赶月莫停留，平芜尽处是春山！&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;缘起在人群中看你缘落看你在人群中&#34;&gt;缘起在人群中看你，缘落看你在人群中&lt;/h1&gt;
-&lt;p&gt;​	今天历尽千辛万苦（主要是人太菜），终于把博客搞好了，去年刚开学就犹豫要不要搞一个，思来想去，一直拖到了现在，以后争取每日更新，鞭策自己。
-​	追风赶月莫停留，平芜尽处是春山！&lt;/p&gt;
 </content>
     </item>
     

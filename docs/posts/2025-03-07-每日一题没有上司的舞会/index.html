@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>每日一题：没有上司的舞会 :: CSemy&#39;s blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="​	快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。
+​	题目链接：https://ac.nowcoder.com/acm/contest/25022/1002
+​	大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。
+#include &lt;bits/stdc&#43;&#43;.h&gt;using namespace std;const int maxn = 6005;vector&lt;int&gt; g[maxn];int dp[maxn][2], a[maxn], n;//dp数组第二维0表示不选取，1表示选取void dfs(int u, int fa){dp[u][0] = 0;dp[u][1] = a[u];for (auto x : g[u]){if (x != fa){dfs(x, u);dp[u][0] &#43;= max(dp[x][1],dp[x][0]);dp[u][1] &#43;= dp[x][0];}}}int main(){cin &gt;&gt; n;for (int i = 1; i &lt;= n; i&#43;&#43;)cin &gt;&gt; a[i];for (int i = 1; i &lt;= n; i&#43;&#43;){int x, y;if(x==0 and y == 0)break;cin &gt;&gt; x &gt;&gt; y;g[x].emplace_back(y);g[y].emplace_back(x);}dfs(1, -1);//初始入口，根节点无父亲，任意赋值cout &lt;&lt; max(dp[1][0], dp[1][1]);} ​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector&#43;auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://Blinkion.github.io/posts/2025-03-07-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/" />
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://Blinkion.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://Blinkion.github.io/img/theme-colors/orange.png">
+  <link rel="apple-touch-icon" href="https://Blinkion.github.io/img/theme-colors/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="每日一题：没有上司的舞会">
+<meta property="og:description" content="​	快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。
+​	题目链接：https://ac.nowcoder.com/acm/contest/25022/1002
+​	大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。
+#include &lt;bits/stdc&#43;&#43;.h&gt;using namespace std;const int maxn = 6005;vector&lt;int&gt; g[maxn];int dp[maxn][2], a[maxn], n;//dp数组第二维0表示不选取，1表示选取void dfs(int u, int fa){dp[u][0] = 0;dp[u][1] = a[u];for (auto x : g[u]){if (x != fa){dfs(x, u);dp[u][0] &#43;= max(dp[x][1],dp[x][0]);dp[u][1] &#43;= dp[x][0];}}}int main(){cin &gt;&gt; n;for (int i = 1; i &lt;= n; i&#43;&#43;)cin &gt;&gt; a[i];for (int i = 1; i &lt;= n; i&#43;&#43;){int x, y;if(x==0 and y == 0)break;cin &gt;&gt; x &gt;&gt; y;g[x].emplace_back(y);g[y].emplace_back(x);}dfs(1, -1);//初始入口，根节点无父亲，任意赋值cout &lt;&lt; max(dp[1][0], dp[1][1]);} ​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector&#43;auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。
+" />
+<meta property="og:url" content="https://Blinkion.github.io/posts/2025-03-07-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/" />
+<meta property="og:site_name" content="CSemy&#39;s blog" />
+
+  
+    <meta property="og:image" content="img/favicon/%!s(&lt;nil&gt;).png">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-03-07 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://Blinkion.github.io/">
+  <div class="logo">
+    re-Terminal
+  </div>
+</a>
+
+    </div>
+    
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://Blinkion.github.io/posts/2025-03-07-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/">每日一题：没有上司的舞会</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-03-07</time><span class="post-author">CSemy</span>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+
+  
+
+  <div class="post-content"><div>
+        <p>​	快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。</p>
+<p>​	题目链接：https://ac.nowcoder.com/acm/contest/25022/1002</p>
+<p>​	大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。</p>
+<pre tabindex="0"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn = 6005;
+vector&lt;int&gt; g[maxn];
+int dp[maxn][2], a[maxn], n;//dp数组第二维0表示不选取，1表示选取
+void dfs(int u, int fa)
+{
+    dp[u][0] = 0;
+    dp[u][1] = a[u];
+    for (auto x : g[u])
+    {
+        if (x != fa)
+        {
+            dfs(x, u);
+            dp[u][0] += max(dp[x][1],dp[x][0]);
+            dp[u][1] += dp[x][0];
+        }
+    }
+}
+int main()
+{
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++)
+        cin &gt;&gt; a[i];
+    for (int i = 1; i &lt;= n; i++)
+    {
+        int x, y;
+        if(x==0 and y == 0)
+            break;
+        cin &gt;&gt; x &gt;&gt; y;
+        g[x].emplace_back(y);
+        g[y].emplace_back(x);
+    }
+    dfs(1, -1);//初始入口，根节点无父亲，任意赋值
+    cout &lt;&lt; max(dp[1][0], dp[1][1]);
+}
+</code></pre><p>​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。</p>
+<p>​	君埋泉下泥销骨，我寄人间雪满头。</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
