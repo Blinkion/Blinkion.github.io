@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>我的博客</title>
+    <link>https://Blinkion.github.io/</link>
+    <description>Recent content on 我的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 07 Mar 2025 20:02:22 +0800</lastBuildDate><atom:link href="https://Blinkion.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>缘起</title>
+      <link>https://Blinkion.github.io/posts/demo/</link>
+      <pubDate>Fri, 07 Mar 2025 20:02:22 +0800</pubDate>
+      
+      <guid>https://Blinkion.github.io/posts/demo/</guid>
+      <description>&lt;h1 id=&#34;缘起在人群看你缘落看你在人群中&#34;&gt;缘起在人群看你，缘落看你在人群中&lt;/h1&gt;</description>
+      <content>&lt;h1 id=&#34;缘起在人群看你缘落看你在人群中&#34;&gt;缘起在人群看你，缘落看你在人群中&lt;/h1&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
