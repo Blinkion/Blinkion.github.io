@@ -1,2 +1,3 @@
 # Blinkion.github.io
-My blog
+My blog made by Hugo.
+Thanks for Deepseek and Rikka.
