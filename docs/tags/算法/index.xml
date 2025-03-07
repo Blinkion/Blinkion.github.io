@@ -13,9 +13,8 @@
       <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
       
       <guid>https://Blinkion.github.io/posts/2025-03-07-%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/</guid>
-      <description>&lt;p&gt;​	快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。&lt;/p&gt;
-&lt;p&gt;​	题目链接：https://ac.nowcoder.com/acm/contest/25022/1002&lt;/p&gt;
-&lt;p&gt;​	大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。&lt;/p&gt;
+      <description>&lt;p&gt;快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。&lt;/p&gt;
+&lt;p&gt;大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 const int maxn = 6005;
@@ -52,10 +51,9 @@ int main()
     dfs(1, -1);//初始入口，根节点无父亲，任意赋值
     cout &amp;lt;&amp;lt; max(dp[1][0], dp[1][1]);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;</description>
-      <content>&lt;p&gt;​	快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。&lt;/p&gt;
-&lt;p&gt;​	题目链接：https://ac.nowcoder.com/acm/contest/25022/1002&lt;/p&gt;
-&lt;p&gt;​	大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;</description>
+      <content>&lt;p&gt;快要蓝桥杯比赛了，刚开学还不算特别忙，但是没有点鞭策也容易懈怠，通过写博客逼迫自己来看几眼算法知识（其实也是搞博客的直接动机），第一次先来一个简单的树形DP。&lt;/p&gt;
+&lt;p&gt;大意：树的每个节点有一个值，在不能同时取父和子节点的的前提下，求节点和的最大值。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 const int maxn = 6005;
@@ -92,7 +90,7 @@ int main()
     dfs(1, -1);//初始入口，根节点无父亲，任意赋值
     cout &amp;lt;&amp;lt; max(dp[1][0], dp[1][1]);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;
 </content>
     </item>
     
