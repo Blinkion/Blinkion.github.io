@@ -1,4 +1,5 @@
 baseurl = "https://Blinkion.github.io/"
 languageCode = "zh-cn"
+themeColor = "blue"
 theme = "re-terminal"
 title = "CSemy's blog"

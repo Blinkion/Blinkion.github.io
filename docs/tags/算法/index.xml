@@ -93,7 +93,6 @@ int main()
     cout &amp;lt;&amp;lt; max(dp[1][0], dp[1][1]);
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​	链式前向星存图固然把空间利用到了极致，但在不卡stl时，使用vector+auto让代码更加简洁。笔者第一次做此题时，陷入了误区，没有考虑父子节点都不参加，结果谬以千里。&lt;/p&gt;
-&lt;p&gt;​	君埋泉下泥销骨，我寄人间雪满头。&lt;/p&gt;
 </content>
     </item>
     
