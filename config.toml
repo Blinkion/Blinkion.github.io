@@ -4,7 +4,7 @@ languageCode = "zh-cn"
 # Remove it if you use the theme as a remote Hugo Module.
 theme = "re-terminal"
 pagination.pagerSize = 5
-title = "我的博客"
+title = "My blog"
 
 [params]
   # dir name of your main content (default is `content/posts`).
@@ -12,7 +12,7 @@ title = "我的博客"
   contentTypeName = "posts"
 
   # ["orange", "blue", "red", "green", "pink"]
-  themeColor = "orange"
+  themeColor = "blue"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
