@@ -120,7 +120,11 @@ title = "CSemy's blog"
 [[module.imports]]
   path = 'github.com/mirus-ua/hugo-theme-re-terminal'
 
+[markup]
+  defaultMarkdownHandler = "goldmark"
+
 [markup.goldmark.renderer]
-  unsafe = true  # 允许原始HTML中的数学公式
-[markup.goldmark.extensions]
-  math = true     # 启用数学公式扩展
+unsafe = true  # 允许渲染原始HTML标签（用于加载数学库）
+
+[markup.math]
+enable = true   # 启用数学公式支持
