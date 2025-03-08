@@ -7,7 +7,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="异或（Xor） 知识 异或（Exclusive OR，简称 XOR）是一种二元逻辑运算符，数学符号为⊕，编程符号为 ^。其本质是不进位二进制加法，运算规则如下 0 ⊕ 0 = 0 1 ⊕ 0 = 1 0 ⊕ 1 = 1 1 ⊕ 1 = 0 交换律：a ⊕ b = b ⊕ a ​结合律：a ⊕ (b ⊕ c) = (a ⊕ b) ⊕ c ​自反性：a ⊕ a = 0，a ⊕ 0 = a ​传递性：若 a ⊕ b = c，则 a = b ⊕ c 且 b = a ⊕ c 本质：A⊕B=(A∧¬B)∨(¬A∧B) 运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级 例题1:汉明距离 题意：两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。给你两个整数 x 和 y，计算并返回它们之间的汉明距离。
-计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数 cppclass Solution {public:int hammingDistance(int x, int y) {return __builtin_popcount(x ^ y);}};" />
+计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数 cpp核心代码模式class Solution {public:int hammingDistance(int x, int y) {return __builtin_popcount(x ^ y);}};例题2:找出前缀异或的原始数组 题意：给你一个长度为 n 的 整数 数组 pref 。找出并返回满足下述条件且长度为 n 的数组 arr ：pref[i] = arr[0] ^ arr[1] ^ &hellip; ^ arr[i].注意 ^ 表示 按位异或（bitwise-xor）运算。可以证明答案是 唯一 的。
+" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -46,7 +47,8 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="异或：位运算初探">
 <meta property="og:description" content="异或（Xor） 知识 异或（Exclusive OR，简称 XOR）是一种二元逻辑运算符，数学符号为⊕，编程符号为 ^。其本质是不进位二进制加法，运算规则如下 0 ⊕ 0 = 0 1 ⊕ 0 = 1 0 ⊕ 1 = 1 1 ⊕ 1 = 0 交换律：a ⊕ b = b ⊕ a ​结合律：a ⊕ (b ⊕ c) = (a ⊕ b) ⊕ c ​自反性：a ⊕ a = 0，a ⊕ 0 = a ​传递性：若 a ⊕ b = c，则 a = b ⊕ c 且 b = a ⊕ c 本质：A⊕B=(A∧¬B)∨(¬A∧B) 运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级 例题1:汉明距离 题意：两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。给你两个整数 x 和 y，计算并返回它们之间的汉明距离。
-计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数 cppclass Solution {public:int hammingDistance(int x, int y) {return __builtin_popcount(x ^ y);}};" />
+计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数 cpp核心代码模式class Solution {public:int hammingDistance(int x, int y) {return __builtin_popcount(x ^ y);}};例题2:找出前缀异或的原始数组 题意：给你一个长度为 n 的 整数 数组 pref 。找出并返回满足下述条件且长度为 n 的数组 arr ：pref[i] = arr[0] ^ arr[1] ^ &hellip; ^ arr[i].注意 ^ 表示 按位异或（bitwise-xor）运算。可以证明答案是 唯一 的。
+" />
 <meta property="og:url" content="https://Blinkion.github.io/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/" />
 <meta property="og:site_name" content="CSemy&#39;s blog" />
 
@@ -190,7 +192,7 @@
     <input id="1" type="checkbox" checked />
     <label for="1">
       <span class="collapsable-code__language">cpp</span>
-      
+      <span class="collapsable-code__title">核心代码模式</span>
       <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
     </label>
     <pre class="language-cpp" ><code>
@@ -198,6 +200,37 @@ class Solution {
 public:
     int hammingDistance(int x, int y) {
         return __builtin_popcount(x ^ y);
+    }
+};
+</code></pre>
+  </div>
+
+
+<h2 id="例题2找出前缀异或的原始数组"><a href="https://leetcode.cn/problems/find-the-original-array-of-prefix-xor/description/">例题2:找出前缀异或的原始数组</a><a href="#例题2找出前缀异或的原始数组" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>题意：给你一个长度为 n 的 整数 数组 pref 。找出并返回满足下述条件且长度为 n 的数组 arr ：pref[i] = arr[0] ^ arr[1] ^ &hellip; ^ arr[i].注意 ^ 表示 按位异或（bitwise-xor）运算。可以证明答案是 唯一 的。</p>
+<ul>
+<li>类似于前缀和与差分思想，代码几乎相同</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      <span class="collapsable-code__title">核心代码模式</span>
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+class Solution {
+public:
+    vector&lt;int&gt; findArray(vector&lt;int&gt;&amp; pref) {
+        vector&lt;int&gt; ans(pref.size());
+        ans[0] = pref[0];
+        for(int i = 1;i&lt;pref.size();i&#43;&#43;){
+            ans[i] = pref[i]^pref[i-1];
+        }
+        return ans;
     }
 };
 </code></pre>
