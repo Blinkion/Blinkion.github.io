@@ -18,7 +18,7 @@ title = "CSemy's blog"
   showMenuItems = 0
 
   # show selector to switch language
-  showLanguageSelector = false
+  showLanguageSelector = true
 
   # set theme to full screen width
   fullWidthTheme = false
@@ -59,7 +59,7 @@ title = "CSemy's blog"
   # you can set a banner on the top of the page with a call to action
   # defaults: dismissible = false; URL is optional
   # [params.banner]
-  # dismissible = false
+  # dismissible = truefalse
   # text = "Check it out on GitHub"
   # url = "https://github.com/mirus-ua/hugo-theme-re-terminal"
 
@@ -75,7 +75,7 @@ title = "CSemy's blog"
 [languages]
   [languages.en.params]
     languageName = "English"
-    title = "re-Terminal"
+    title = "Main"
     subtitle = "A simple, retro theme for Hugo"
     owner = ""
     keywords = ""
@@ -91,7 +91,7 @@ title = "CSemy's blog"
     words = "words"
 
     [languages.en.params.logo]
-      logoText = "re-Terminal"
+      logoText = "Main"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -120,17 +120,12 @@ title = "CSemy's blog"
 [[module.imports]]
   path = 'github.com/mirus-ua/hugo-theme-re-terminal'
 
-[markup]
-  defaultMarkdownHandler = "goldmark"
+[params]
+  #  other params
+  math = true  # Enable math support
 
-[markup.goldmark]
-  # 启用数学公式扩展
-  [markup.goldmark.extensions]
-    math = true
-  # 允许渲染原始HTML
-  [markup.goldmark.renderer]
-    unsafe = true
-[markup.math]
-  # 指定渲染引擎（MathJax或KaTeX）
-  enable = true
-  engine = "mathjax"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # This allows HTML in markdown

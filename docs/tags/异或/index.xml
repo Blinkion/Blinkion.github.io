@@ -16,15 +16,14 @@
       <description>&lt;h1 id=&#34;异或xor&#34;&gt;异或（Xor）&lt;/h1&gt;
 &lt;h2 id=&#34;知识&#34;&gt;知识&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;异或（Exclusive OR，简称 XOR）是一种&lt;strong&gt;二元逻辑运算符&lt;/strong&gt;，数学符号为 $\bigoplus$，编程符号为 ^。其本质是&lt;strong&gt;不进位二进制加法&lt;/strong&gt;，运算规则如下
-$$
-0 \bigoplus 0 = 0\
-1 \bigoplus 0 = 1\
-0 \bigoplus 1 = 1\
-1 \bigoplus 1 = 0\
-$$&lt;/li&gt;
+&lt;li&gt;异或（Exclusive OR，简称 XOR）是一种&lt;strong&gt;二元逻辑运算符&lt;/strong&gt;，数学符号为⊕，编程符号为 ^。其本质是&lt;strong&gt;不进位二进制加法&lt;/strong&gt;，运算规则如下&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-math&#34; data-lang=&#34;math&#34;&gt;0 ⊕ 0 = 0 \\ 1 ⊕ 0 = 1 \\ 0 ⊕ 1 = 1 \\ 1 ⊕ 1 = 0
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;
@@ -35,15 +34,14 @@ $$&lt;/li&gt;
       <content>&lt;h1 id=&#34;异或xor&#34;&gt;异或（Xor）&lt;/h1&gt;
 &lt;h2 id=&#34;知识&#34;&gt;知识&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;异或（Exclusive OR，简称 XOR）是一种&lt;strong&gt;二元逻辑运算符&lt;/strong&gt;，数学符号为 $\bigoplus$，编程符号为 ^。其本质是&lt;strong&gt;不进位二进制加法&lt;/strong&gt;，运算规则如下
-$$
-0 \bigoplus 0 = 0\
-1 \bigoplus 0 = 1\
-0 \bigoplus 1 = 1\
-1 \bigoplus 1 = 0\
-$$&lt;/li&gt;
+&lt;li&gt;异或（Exclusive OR，简称 XOR）是一种&lt;strong&gt;二元逻辑运算符&lt;/strong&gt;，数学符号为⊕，编程符号为 ^。其本质是&lt;strong&gt;不进位二进制加法&lt;/strong&gt;，运算规则如下&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-math&#34; data-lang=&#34;math&#34;&gt;0 ⊕ 0 = 0 \\ 1 ⊕ 0 = 1 \\ 0 ⊕ 1 = 1 \\ 1 ⊕ 1 = 0
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;

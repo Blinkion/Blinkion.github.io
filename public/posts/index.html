@@ -2,7 +2,7 @@
 <html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
-    <title>Posts :: 我的博客</title>
+    <title>Posts :: CSemy&#39;s blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +46,7 @@
 <meta property="og:title" content="Posts">
 <meta property="og:description" content="" />
 <meta property="og:url" content="http://localhost:1313/posts/" />
-<meta property="og:site_name" content="我的博客" />
+<meta property="og:site_name" content="CSemy&#39;s blog" />
 
   
     <meta property="og:image" content="img/favicon/%!s(&lt;nil&gt;).png">
@@ -59,7 +59,9 @@
 
 
 
-  <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="我的博客" />
+  <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="CSemy&#39;s blog" />
+
+
 
 
 
@@ -105,13 +107,23 @@
     
       <article class="post on-list">
         <h1 class="post-title">
-          <a href="http://localhost:1313/posts/demo/">缘起</a>
+          <a href="http://localhost:1313/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/">异或：位运算初探</a>
         </h1>
-        <div class="post-meta"><time class="post-date">2025-03-07</time>
+        <div class="post-meta"><time class="post-date">2025-03-08</time><span class="post-author">CSemy</span>
           
 
         </div>
 
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+            
+            #<a href="http://localhost:1313/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>&nbsp;
+            
+            #<a href="http://localhost:1313/tags/%E5%BC%82%E6%88%96/">异或</a>&nbsp;
+            
+          </span>
         
 
         
@@ -120,13 +132,170 @@
 
         <div class="post-content">
           
-            <h1 id="缘起在人群看你缘落看你在人群中">缘起在人群看你，缘落看你在人群中</h1>
+            <h1 id="异或xor">异或（Xor）</h1>
+<h2 id="知识">知识</h2>
+<ul>
+<li>异或（Exclusive OR，简称 XOR）是一种<strong>二元逻辑运算符</strong>，数学符号为 $\bigoplus$，编程符号为 ^。其本质是<strong>不进位二进制加法</strong>，运算规则如下</li>
+</ul>
+<p>$$
+0 \bigoplus 0 = 0\
+1 \bigoplus 0 = 1\
+0 \bigoplus 1 = 1\
+1 \bigoplus 1 = 0\
+$$</p>
+<h2 id="例题"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题</a></h2>
+<p>题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
+<ul>
+<li>我们设二维dp数组代表以 i 为根的子树的所有最优解</li>
+<li>对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）</li>
+<li>注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况</li>
+<li>通过 DFS，在返回上一层时更新当前结点的最优解</li>
+</ul>
           
         </div>
 
         
           <div>
-            <a class="read-more button" href="/posts/demo/"> →</a>
+            <a class="read-more button" href="/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/"> →</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
+          <a href="http://localhost:1313/posts/2025-03-07-%E6%A0%91%E5%BD%A2dp%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/">树形DP：没有上司的舞会</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-03-07</time><span class="post-author">CSemy</span>
+          
+
+        </div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+            
+            #<a href="http://localhost:1313/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
+            
+            #<a href="http://localhost:1313/tags/%E6%A0%91%E5%BD%A2dp/">树形DP</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+
+        <div class="post-content">
+          
+            <h1 id="树形动态规划tree-dp">树形动态规划（Tree DP）</h1>
+<h2 id="知识">知识</h2>
+<ul>
+<li>树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。</li>
+<li>通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。</li>
+</ul>
+<h2 id="例题"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题</a></h2>
+<p>题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
+<ul>
+<li>我们设二维dp数组代表以 i 为根的子树的所有最优解</li>
+<li>对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）</li>
+<li>注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况</li>
+<li>通过 DFS，在返回上一层时更新当前结点的最优解</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+const int maxn = 6005;
+vector&lt;int&gt; g[maxn];//链式前向星存图固然把空间利用到了极致，
+//但在不卡stl时，使用vector&#43;auto让代码更加简洁。
+int dp[maxn][2], a[maxn], n;//dp数组第二维0表示不选取，1表示选取
+void dfs(int u, int fa)
+{
+    dp[u][0] = 0;
+    dp[u][1] = a[u];
+    for (auto x : g[u])
+    {
+        if (x != fa)
+        {
+            dfs(x, u);
+            dp[u][0] &#43;= max(dp[x][1],dp[x][0]);
+            dp[u][1] &#43;= dp[x][0];
+        }
+    }
+}
+int main()
+{
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        cin &gt;&gt; a[i];
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+    {
+        int x, y;
+        if(x==0 and y == 0)
+            break;
+        cin &gt;&gt; x &gt;&gt; y;
+        g[x].emplace_back(y);
+        g[y].emplace_back(x);
+    }
+    dfs(1, -1);//初始入口，根节点无父亲，任意赋值
+    cout &lt;&lt; max(dp[1][0], dp[1][1]);
+}
+</code></pre>
+  </div>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button" href="/posts/2025-03-07-%E6%A0%91%E5%BD%A2dp%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/"> →</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
+          <a href="http://localhost:1313/posts/2025-03-07-%E7%BC%98%E8%B5%B7/">缘起</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-03-07</time><span class="post-author">CSemy</span>
+          
+
+        </div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="http://localhost:1313/tags/%E6%84%9F%E6%82%9F/">感悟</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+
+        <div class="post-content">
+          
+            <h1 id="缘起在人群中看你缘落看你在人群中">缘起在人群中看你，缘落看你在人群中</h1>
+<p>今日终于历经千帆，将个人博客从零搭建完成。回望去年初秋刚入学时，我曾在&quot;是否要创建博客&quot;的抉择中反复徘徊——既渴望通过文字沉淀思考，又畏惧持续输出的压力，更在技术门槛前踌躇不前。而今推开代码迷雾，调试过两三个主题模板，与命令行报错鏖战整宿后，才真正领悟到：拖延的本质是对未知的恐惧，而突破的关键在于行动的勇气。</p>
+<p>选择以日更为誓约，既是对抗惰性的利剑，亦是自我成长的阶梯。正如古罗马哲人塞涅卡所言：&ldquo;生命并非短促，而是我们荒废太多。&ldquo;日更不仅是写作习惯的养成，更是思维逻辑的淬炼场：当日常灵感化作系统化思考，当零碎感悟沉淀为结构性认知，这种持续输出的过程恰似铸剑师反复锤炼精钢。更期待与读者的思想碰撞中，激荡出新的认知维度，让文字成为连通世界的密钥。</p>
+<p>深知这条路上布满荆棘——灵感枯竭的深夜、数据惨淡的清晨、自我怀疑的黄昏。我愿将每个写作瓶颈视为破茧契机，把每篇稚嫩文字当作攀登阶梯，在持续输出中打磨思维的锋芒。这既是对抗浮躁时代的锚点，更是丈量生命厚度的标尺。</p>
+<p>&ldquo;只应今日爱山意，便是他时傲世因。&ldquo;此刻埋首耕耘的每个字符，都是未来精神世界的筑基之石。当量变积累触发质变飞跃，当零散篇章串联成知识图谱，这场孤独的文字远征终将化作璀璨星轨。愿以此刻为始，在日更的修行中见天地、见众生、见自己。</p>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button" href="/posts/2025-03-07-%E7%BC%98%E8%B5%B7/"> →</a>
           </div>
         
       </article>
