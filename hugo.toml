@@ -3,12 +3,3 @@ languageCode = "zh-cn"
 themeColor = "blue"
 theme = "re-terminal"
 title = "CSemy's blog"
-
-[markup]
-  defaultMarkdownHandler = "goldmark"
-
-[markup.goldmark.renderer]
-unsafe = true  # 允许渲染原始HTML标签（用于加载数学库）
-
-[markup.math]
-enable = true   # 启用数学公式支持

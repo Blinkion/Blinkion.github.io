@@ -123,8 +123,14 @@ title = "CSemy's blog"
 [markup]
   defaultMarkdownHandler = "goldmark"
 
-[markup.goldmark.renderer]
-unsafe = true  # 允许渲染原始HTML标签（用于加载数学库）
-
+[markup.goldmark]
+  # 启用数学公式扩展
+  [markup.goldmark.extensions]
+    math = true
+  # 允许渲染原始HTML
+  [markup.goldmark.renderer]
+    unsafe = true
 [markup.math]
-enable = true   # 启用数学公式支持
+  # 指定渲染引擎（MathJax或KaTeX）
+  enable = true
+  engine = "mathjax"
