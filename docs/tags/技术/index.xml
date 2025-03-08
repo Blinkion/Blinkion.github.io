@@ -14,9 +14,9 @@
       
       <guid>https://Blinkion.github.io/posts/2025-03-08-%E5%88%9D%E8%AF%95opencv%E5%9B%BE%E7%89%87%E9%A2%84%E5%A4%84%E7%90%86/</guid>
       <description>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
-&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
+&lt;p&gt;市面上各种文档扫描软件(例如扫描全能王)早已屡见不鲜，背后的程序逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能简单解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
 &lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
-&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
+&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请准备好以下依赖（其它未测试版本不担保可用性）
 
 
 
@@ -288,9 +288,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
 
 &lt;p&gt;这里给出一个样本成果,感觉还比较满意，但处理时间真的有点长（45s左右）&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
-&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
+&lt;p&gt;市面上各种文档扫描软件(例如扫描全能王)早已屡见不鲜，背后的程序逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能简单解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
 &lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
-&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
+&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请准备好以下依赖（其它未测试版本不担保可用性）
 
 
 
