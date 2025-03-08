@@ -270,8 +270,7 @@ pre {
 <li>注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况</li>
 <li>通过 DFS，在返回上一层时更新当前结点的最优解</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">//AC code
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">6005</span>;
 </span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> g[maxn];<span style="color:#75715e">//链式前向星存图固然把空间利用到了极致，
@@ -309,6 +308,55 @@ pre {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> max(dp[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], dp[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      <span class="collapsable-code__title">参考代码</span>
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+const int maxn = 6005;
+vector&lt;int&gt; g[maxn];//链式前向星存图固然把空间利用到了极致，
+//但在不卡stl时，使用vector&#43;auto让代码更加简洁。
+int dp[maxn][2], a[maxn], n;//dp数组第二维0表示不选取，1表示选取
+void dfs(int u, int fa)
+{
+    dp[u][0] = 0;
+    dp[u][1] = a[u];
+    for (auto x : g[u])
+    {
+        if (x != fa)
+        {
+            dfs(x, u);
+            dp[u][0] &#43;= max(dp[x][1],dp[x][0]);
+            dp[u][1] &#43;= dp[x][0];
+        }
+    }
+}
+int main()
+{
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+        cin &gt;&gt; a[i];
+    for (int i = 1; i &lt;= n; i&#43;&#43;)
+    {
+        int x, y;
+        if(x==0 and y == 0)
+            break;
+        cin &gt;&gt; x &gt;&gt; y;
+        g[x].emplace_back(y);
+        g[y].emplace_back(x);
+    }
+    dfs(1, -1);//初始入口，根节点无父亲，任意赋值
+    cout &lt;&lt; max(dp[1][0], dp[1][1]);
+}
+</code></pre>
+  </div>
           
         </div>
 
