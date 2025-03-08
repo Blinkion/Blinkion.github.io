@@ -3,3 +3,8 @@ languageCode = "zh-cn"
 themeColor = "blue"
 theme = "re-terminal"
 title = "CSemy's blog"
+
+[markup.goldmark.renderer]
+  unsafe = true  # 允许原始HTML中的数学公式
+[markup.goldmark.extensions]
+  math = true     # 启用数学公式扩展

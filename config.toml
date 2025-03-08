@@ -119,3 +119,8 @@ title = "CSemy's blog"
   # replacements = "github.com/mirus-ua/hugo-theme-re-terminal -> themes/re-terminal"
 [[module.imports]]
   path = 'github.com/mirus-ua/hugo-theme-re-terminal'
+
+[markup.goldmark.renderer]
+  unsafe = true  # 允许原始HTML中的数学公式
+[markup.goldmark.extensions]
+  math = true     # 启用数学公式扩展
