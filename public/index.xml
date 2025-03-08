@@ -14,7 +14,7 @@
       
       <guid>http://localhost:1313/posts/2025-03-08-%E5%88%9D%E8%AF%95opencv%E5%9B%BE%E7%89%87%E9%A2%84%E5%A4%84%E7%90%86/</guid>
       <description>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
-&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo 是我的一些小小尝试。&lt;/p&gt;
+&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
 &lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
 &lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
 
@@ -106,7 +106,7 @@ def local_imshow(img, title=&amp;#39;Image&amp;#39;):
     &lt;input id=&#34;5&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;5&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
-      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程（一些报错信息已注释）&lt;/span&gt;
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
@@ -282,13 +282,13 @@ if __name__ == &amp;#34;__main__&amp;#34;:
   &lt;/div&gt;
 
 
-&lt;p&gt;这里展示一个样本成果
 
-&lt;img src=&#34;https://github.com/Blinkion/blog_pics/blob/28138e028c35a217009aa3946acec18d87e8a9df/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/Blinkion/blog_pics@main/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
 
-&lt;/p&gt;</description>
+
+&lt;p&gt;这里给出一个样本成果,感觉还比较满意，但处理时间真的有点长（45s左右）&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
-&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo 是我的一些小小尝试。&lt;/p&gt;
+&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo是我的一些小小尝试。&lt;/p&gt;
 &lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
 &lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
 
@@ -380,7 +380,7 @@ def local_imshow(img, title=&amp;#39;Image&amp;#39;):
     &lt;input id=&#34;5&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;5&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
-      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程（一些报错信息已注释）&lt;/span&gt;
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
@@ -556,11 +556,11 @@ if __name__ == &amp;#34;__main__&amp;#34;:
   &lt;/div&gt;
 
 
-&lt;p&gt;这里展示一个样本成果
 
-&lt;img src=&#34;https://github.com/Blinkion/blog_pics/blob/28138e028c35a217009aa3946acec18d87e8a9df/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/Blinkion/blog_pics@main/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
 
-&lt;/p&gt;
+
+&lt;p&gt;这里给出一个样本成果,感觉还比较满意，但处理时间真的有点长（45s左右）&lt;/p&gt;
 </content>
     </item>
     
