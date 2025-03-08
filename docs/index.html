@@ -153,18 +153,38 @@
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">⊕</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">⊕</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">⊕</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>交换律<span style="color:#960050;background-color:#1e0010">：</span>a <span style="color:#960050;background-color:#1e0010">⊕</span> b <span style="color:#f92672">=</span> b <span style="color:#960050;background-color:#1e0010">⊕</span> a
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>交换律<span style="color:#960050;background-color:#1e0010">：</span>a <span style="color:#960050;background-color:#1e0010">⊕</span> b <span style="color:#f92672">=</span> b <span style="color:#960050;background-color:#1e0010">⊕</span> a
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">​</span>结合律<span style="color:#960050;background-color:#1e0010">：</span>a <span style="color:#960050;background-color:#1e0010">⊕</span> (b <span style="color:#960050;background-color:#1e0010">⊕</span> c) <span style="color:#f92672">=</span> (a <span style="color:#960050;background-color:#1e0010">⊕</span> b) <span style="color:#960050;background-color:#1e0010">⊕</span> c
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">​</span>自反性<span style="color:#960050;background-color:#1e0010">：</span>a <span style="color:#960050;background-color:#1e0010">⊕</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>a <span style="color:#960050;background-color:#1e0010">⊕</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> a
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">​</span>传递性<span style="color:#960050;background-color:#1e0010">：</span>若 a <span style="color:#960050;background-color:#1e0010">⊕</span> b <span style="color:#f92672">=</span> c<span style="color:#960050;background-color:#1e0010">，</span>则 a <span style="color:#f92672">=</span> b <span style="color:#960050;background-color:#1e0010">⊕</span> c 且 b <span style="color:#f92672">=</span> a <span style="color:#960050;background-color:#1e0010">⊕</span> c
-</span></span></code></pre></div><h2 id="例题"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题</a></h2>
-<p>题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
-<ul>
-<li>我们设二维dp数组代表以 i 为根的子树的所有最优解</li>
-<li>对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）</li>
-<li>注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况</li>
-<li>通过 DFS，在返回上一层时更新当前结点的最优解</li>
+</span></span></code></pre></div><ul>
+<li>本质：A⊕B=(A∧¬B)∨(¬A∧B)</li>
+<li>运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级</li>
 </ul>
+<h2 id="例题1汉明距离"><a href="https://leetcode.cn/problems/hamming-distance/description/">例题1:汉明距离</a></h2>
+<p>题意：两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。给你两个整数 x 和 y，计算并返回它们之间的汉明距离。</p>
+<ul>
+<li>计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        return __builtin_popcount(x ^ y);
+    }
+};
+</code></pre>
+  </div>
           
         </div>
 
