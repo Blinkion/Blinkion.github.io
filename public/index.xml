@@ -8,6 +8,563 @@
     <language>zh-cn</language>
     <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>初试OpenCV：图片预处理</title>
+      <link>http://localhost:1313/posts/2025-03-08-%E5%88%9D%E8%AF%95opencv%E5%9B%BE%E7%89%87%E9%A2%84%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/2025-03-08-%E5%88%9D%E8%AF%95opencv%E5%9B%BE%E7%89%87%E9%A2%84%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
+&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo 是我的一些小小尝试。&lt;/p&gt;
+&lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
+&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;json&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;requirements&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-json&#34; &gt;&lt;code&gt;
+{
+    python==3.11.11
+    numpy==1.26.4,
+    opencv-python== 4.11.0.86,
+    matplotlib==3.10.0
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+下面正式进入处理环节。
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;2&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;2&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;挂载Google Drive&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+from google.colab import drive
+drive.mount(&amp;#39;/content/drive&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+&lt;/p&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;3&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;3&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;导入依赖库&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+&amp;#34;&amp;#34;&amp;#34;这里为了代码可以在云端本地都轻松运行，故使用plt展示&amp;#34;&amp;#34;&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;4&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;4&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;图像显示函数&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+def local_imshow(img, title=&amp;#39;Image&amp;#39;):
+    plt.figure(figsize=(12, 8))
+    if len(img.shape) == 2:
+        plt.imshow(img, cmap=&amp;#39;gray&amp;#39;, vmin=0, vmax=255)
+    else:
+        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    plt.title(title, fontsize=12)
+    plt.axis(&amp;#39;off&amp;#39;)
+    plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;5&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;5&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+def process_image(image_path):
+    # 加载图像
+    image = cv2.imread(image_path)
+    if image is None:
+        raise FileNotFoundError(f&amp;#34;图片加载失败，请检查路径：{image_path}&amp;#34;)
+
+    # ------------------- 预处理 -------------------
+    # 灰度转换与白平衡
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    white_patch = cv2.resize(gray, (50, 50))
+    white_value = np.percentile(white_patch, 90)
+    adjusted = cv2.addWeighted(gray, 255/white_value, gray, 0, 0)
+    adjusted = np.clip(adjusted, 0, 255).astype(np.uint8)
+
+    # CLAHE对比度增强
+    clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(16,16))
+    enhanced = clahe.apply(adjusted)
+
+    # ------------------- 旋转校正 -------------------
+    def auto_rotate(img):
+        # 形态学预处理
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+        morph = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+
+        # 边缘检测与霍夫变换
+        edges = cv2.Canny(morph, 50, 150, apertureSize=5)
+        lines = cv2.HoughLinesP(edges, 1, np.pi/180, threshold=200,
+                               minLineLength=img.shape[1]//3,
+                               maxLineGap=50)
+
+        # 安全检测
+        if lines is None or len(lines) &amp;lt; 5:
+            #print(&amp;#34;警告：未检测到足够直线，跳过旋转&amp;#34;)
+            return img
+
+        # 角度与权重计算
+        angles = []
+        weights = []
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            length = np.sqrt((x2-x1)**2 &amp;#43; (y2-y1)**2)
+            angle = np.degrees(np.arctan2(y2 - y1, x2 - x1))
+            if abs(angle) &amp;lt; 45 and length &amp;gt; 50:
+                angles.append(angle)
+                weights.append(length)
+
+        if len(angles) == 0:
+            return img
+
+        # 加权中位数计算
+        weights = np.array(weights)
+        repeats = (weights / 10).astype(int)
+        repeats = np.clip(repeats, 1, None)
+        weighted_median = np.median(np.repeat(angles, repeats))
+        #print(f&amp;#34;检测到倾斜角度: {weighted_median:.2f}°&amp;#34;)
+
+        # 执行旋转
+        (h, w) = img.shape
+        center = (w // 2, h // 2)
+        M = cv2.getRotationMatrix2D(center, weighted_median, 1.0)
+        rotated = cv2.warpAffine(img, M, (w, h),
+                                flags=cv2.INTER_CUBIC,
+                                borderMode=cv2.BORDER_REPLICATE)
+        return rotated
+
+    rotated = auto_rotate(enhanced)
+
+    # ------------------- 去噪与增强 -------------------
+    # 非局部均值去噪
+    denoised = cv2.fastNlMeansDenoising(rotated, None,
+                                       h=10,
+                                       templateWindowSize=7,
+                                       searchWindowSize=21)
+
+    # 保边锐化
+    sharpen_kernel = np.array([[ 0, -0.5,  0],
+                              [-0.5, 3.0, -0.5],
+                              [ 0, -0.5,  0]], dtype=np.float32)
+    sharpened = cv2.filter2D(denoised, -1, sharpen_kernel)
+
+    # ------------------- 背景白化处理 -------------------
+    def clean_background(img):
+        # 双边滤波
+        filtered = cv2.bilateralFilter(img, d=9,
+                                      sigmaColor=75,
+                                      sigmaSpace=75)
+
+        # 自适应阈值处理
+        binary = cv2.adaptiveThreshold(filtered, 255,
+                                      cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                      cv2.THRESH_BINARY_INV,
+                                      blockSize=31,
+                                      C=10)
+
+        # 形态学优化
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3))
+        opened = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=1)
+        closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, kernel, iterations=2)
+
+        # 反转并去除黑边
+        inverted = cv2.bitwise_not(closed)
+        inverted[:5,:] = 255  # 上边缘
+        inverted[-5:,:] = 255 # 下边缘
+        inverted[:,:5] = 255  # 左边缘
+        inverted[:,-5:] = 255 # 右边缘
+        return inverted
+
+    final_image = clean_background(sharpened)
+
+    # ------------------- 后处理 -------------------
+    def post_processing(img):
+        # 连通域去噪
+        n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(img)
+
+        cleaned = img.copy()
+        for i in range(1, n_labels):
+            if stats[i, cv2.CC_STAT_AREA] &amp;lt; 20:
+                cleaned[labels == i] = 255
+
+        # 边缘平滑
+        blurred = cv2.GaussianBlur(cleaned, (3,3), 0)
+        _, smoothed = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)
+        return smoothed
+
+    final_clean = post_processing(final_image)
+
+    # ------------------- 可视化 -------------------
+    plt.figure(figsize=(18, 12))
+
+    steps = [
+        (gray, &amp;#39;原始灰度图&amp;#39;),
+        (enhanced, &amp;#39;对比度增强&amp;#39;),
+        (rotated, &amp;#39;旋转校正&amp;#39;),
+        (denoised, &amp;#39;非局部去噪&amp;#39;),
+        (sharpened, &amp;#39;锐化增强&amp;#39;),
+        (final_image, &amp;#39;背景白化&amp;#39;),
+        (final_clean, &amp;#39;最终结果&amp;#39;)
+    ]
+
+    for i, (img, title) in enumerate(steps, 1):
+        plt.subplot(2, 4, i)
+        plt.imshow(img, cmap=&amp;#39;gray&amp;#39;)
+        plt.title(title, fontsize=10)
+        plt.axis(&amp;#39;off&amp;#39;)
+
+    plt.tight_layout()
+    plt.show()
+
+    return final_clean
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;6&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;6&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;主函数&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+if __name__ == &amp;#34;__main__&amp;#34;:
+    image_path = &amp;#34;/content/drive/MyDrive/image/001.jpg&amp;#34;  # 修改为实际路径
+    result = process_image(image_path)
+    local_imshow(result, &amp;#34;最终优化结果&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;p&gt;这里展示一个样本成果
+
+&lt;img src=&#34;https://github.com/Blinkion/blog_pics/blob/28138e028c35a217009aa3946acec18d87e8a9df/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
+
+&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;引入&#34;&gt;引入&lt;/h1&gt;
+&lt;p&gt;市面上各种文档扫描软件早已屡见不鲜，背后的逻辑往往很复杂，但使用流行的Python第三方库OpenCV是否能解决此问题呢？下面的demo 是我的一些小小尝试。&lt;/p&gt;
+&lt;h1 id=&#34;流程&#34;&gt;流程&lt;/h1&gt;
+&lt;p&gt;因为不想在本地环境配置上浪费掉过多时间，故我直接选择了&lt;a href=&#34;https://colab.research.google.com/&#34;&gt;colab&lt;/a&gt;,想要本地配置的请自己准备好以下依赖（其它未测试版本不担保可用性）
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;json&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;requirements&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-json&#34; &gt;&lt;code&gt;
+{
+    python==3.11.11
+    numpy==1.26.4,
+    opencv-python== 4.11.0.86,
+    matplotlib==3.10.0
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+下面正式进入处理环节。
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;2&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;2&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;挂载Google Drive&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+from google.colab import drive
+drive.mount(&amp;#39;/content/drive&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+&lt;/p&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;3&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;3&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;导入依赖库&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+&amp;#34;&amp;#34;&amp;#34;这里为了代码可以在云端本地都轻松运行，故使用plt展示&amp;#34;&amp;#34;&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;4&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;4&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;图像显示函数&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+def local_imshow(img, title=&amp;#39;Image&amp;#39;):
+    plt.figure(figsize=(12, 8))
+    if len(img.shape) == 2:
+        plt.imshow(img, cmap=&amp;#39;gray&amp;#39;, vmin=0, vmax=255)
+    else:
+        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    plt.title(title, fontsize=12)
+    plt.axis(&amp;#39;off&amp;#39;)
+    plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;5&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;5&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心处理流程&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+def process_image(image_path):
+    # 加载图像
+    image = cv2.imread(image_path)
+    if image is None:
+        raise FileNotFoundError(f&amp;#34;图片加载失败，请检查路径：{image_path}&amp;#34;)
+
+    # ------------------- 预处理 -------------------
+    # 灰度转换与白平衡
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    white_patch = cv2.resize(gray, (50, 50))
+    white_value = np.percentile(white_patch, 90)
+    adjusted = cv2.addWeighted(gray, 255/white_value, gray, 0, 0)
+    adjusted = np.clip(adjusted, 0, 255).astype(np.uint8)
+
+    # CLAHE对比度增强
+    clahe = cv2.createCLAHE(clipLimit=4.0, tileGridSize=(16,16))
+    enhanced = clahe.apply(adjusted)
+
+    # ------------------- 旋转校正 -------------------
+    def auto_rotate(img):
+        # 形态学预处理
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+        morph = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+
+        # 边缘检测与霍夫变换
+        edges = cv2.Canny(morph, 50, 150, apertureSize=5)
+        lines = cv2.HoughLinesP(edges, 1, np.pi/180, threshold=200,
+                               minLineLength=img.shape[1]//3,
+                               maxLineGap=50)
+
+        # 安全检测
+        if lines is None or len(lines) &amp;lt; 5:
+            #print(&amp;#34;警告：未检测到足够直线，跳过旋转&amp;#34;)
+            return img
+
+        # 角度与权重计算
+        angles = []
+        weights = []
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            length = np.sqrt((x2-x1)**2 &amp;#43; (y2-y1)**2)
+            angle = np.degrees(np.arctan2(y2 - y1, x2 - x1))
+            if abs(angle) &amp;lt; 45 and length &amp;gt; 50:
+                angles.append(angle)
+                weights.append(length)
+
+        if len(angles) == 0:
+            return img
+
+        # 加权中位数计算
+        weights = np.array(weights)
+        repeats = (weights / 10).astype(int)
+        repeats = np.clip(repeats, 1, None)
+        weighted_median = np.median(np.repeat(angles, repeats))
+        #print(f&amp;#34;检测到倾斜角度: {weighted_median:.2f}°&amp;#34;)
+
+        # 执行旋转
+        (h, w) = img.shape
+        center = (w // 2, h // 2)
+        M = cv2.getRotationMatrix2D(center, weighted_median, 1.0)
+        rotated = cv2.warpAffine(img, M, (w, h),
+                                flags=cv2.INTER_CUBIC,
+                                borderMode=cv2.BORDER_REPLICATE)
+        return rotated
+
+    rotated = auto_rotate(enhanced)
+
+    # ------------------- 去噪与增强 -------------------
+    # 非局部均值去噪
+    denoised = cv2.fastNlMeansDenoising(rotated, None,
+                                       h=10,
+                                       templateWindowSize=7,
+                                       searchWindowSize=21)
+
+    # 保边锐化
+    sharpen_kernel = np.array([[ 0, -0.5,  0],
+                              [-0.5, 3.0, -0.5],
+                              [ 0, -0.5,  0]], dtype=np.float32)
+    sharpened = cv2.filter2D(denoised, -1, sharpen_kernel)
+
+    # ------------------- 背景白化处理 -------------------
+    def clean_background(img):
+        # 双边滤波
+        filtered = cv2.bilateralFilter(img, d=9,
+                                      sigmaColor=75,
+                                      sigmaSpace=75)
+
+        # 自适应阈值处理
+        binary = cv2.adaptiveThreshold(filtered, 255,
+                                      cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                      cv2.THRESH_BINARY_INV,
+                                      blockSize=31,
+                                      C=10)
+
+        # 形态学优化
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3))
+        opened = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel, iterations=1)
+        closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, kernel, iterations=2)
+
+        # 反转并去除黑边
+        inverted = cv2.bitwise_not(closed)
+        inverted[:5,:] = 255  # 上边缘
+        inverted[-5:,:] = 255 # 下边缘
+        inverted[:,:5] = 255  # 左边缘
+        inverted[:,-5:] = 255 # 右边缘
+        return inverted
+
+    final_image = clean_background(sharpened)
+
+    # ------------------- 后处理 -------------------
+    def post_processing(img):
+        # 连通域去噪
+        n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(img)
+
+        cleaned = img.copy()
+        for i in range(1, n_labels):
+            if stats[i, cv2.CC_STAT_AREA] &amp;lt; 20:
+                cleaned[labels == i] = 255
+
+        # 边缘平滑
+        blurred = cv2.GaussianBlur(cleaned, (3,3), 0)
+        _, smoothed = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)
+        return smoothed
+
+    final_clean = post_processing(final_image)
+
+    # ------------------- 可视化 -------------------
+    plt.figure(figsize=(18, 12))
+
+    steps = [
+        (gray, &amp;#39;原始灰度图&amp;#39;),
+        (enhanced, &amp;#39;对比度增强&amp;#39;),
+        (rotated, &amp;#39;旋转校正&amp;#39;),
+        (denoised, &amp;#39;非局部去噪&amp;#39;),
+        (sharpened, &amp;#39;锐化增强&amp;#39;),
+        (final_image, &amp;#39;背景白化&amp;#39;),
+        (final_clean, &amp;#39;最终结果&amp;#39;)
+    ]
+
+    for i, (img, title) in enumerate(steps, 1):
+        plt.subplot(2, 4, i)
+        plt.imshow(img, cmap=&amp;#39;gray&amp;#39;)
+        plt.title(title, fontsize=10)
+        plt.axis(&amp;#39;off&amp;#39;)
+
+    plt.tight_layout()
+    plt.show()
+
+    return final_clean
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;6&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;6&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;python&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;主函数&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-python&#34; &gt;&lt;code&gt;
+if __name__ == &amp;#34;__main__&amp;#34;:
+    image_path = &amp;#34;/content/drive/MyDrive/image/001.jpg&amp;#34;  # 修改为实际路径
+    result = process_image(image_path)
+    local_imshow(result, &amp;#34;最终优化结果&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;p&gt;这里展示一个样本成果
+
+&lt;img src=&#34;https://github.com/Blinkion/blog_pics/blob/28138e028c35a217009aa3946acec18d87e8a9df/2025-03-08-01.png&#34;  alt=&#34;one example&#34;  class=&#34;center&#34;  style=&#34;border-radius: 8px;&#34;    /&gt;
+
+&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
       <title>异或：位运算初探</title>
       <link>http://localhost:1313/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
@@ -22,14 +579,42 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;交换律&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;结合律&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; (b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;自反性&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;传递性&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;若 a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; c&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，&lt;/span&gt;则 a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c 且 b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;本质：A⊕B=(A∧¬B)∨(¬A∧B)&lt;/li&gt;
+&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;例题1汉明距离&#34;&gt;&lt;a href=&#34;https://leetcode.cn/problems/hamming-distance/description/&#34;&gt;例题1:汉明距离&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。给你两个整数 x 和 y，计算并返回它们之间的汉明距离。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;
-&lt;li&gt;对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）&lt;/li&gt;
-&lt;li&gt;注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况&lt;/li&gt;
-&lt;li&gt;通过 DFS，在返回上一层时更新当前结点的最优解&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;li&gt;计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心代码模式&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        return __builtin_popcount(x ^ y);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题2找出前缀异或的原始数组&#34;&gt;&lt;a href=&#34;https://leetcode.cn/problems/find-the-original-array-of-prefix-xor/description/&#34;&gt;例题2:找出前缀异或的原始数组&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：给你一个长度为 n 的 整数 数组 pref 。找出并返回满足下述条件且长度为 n 的数组 arr ：pref[i] = arr[0] ^ arr[1] ^ &amp;hellip; ^ arr[i].注意 ^ 表示 按位异或（bitwise-xor）运算。可以证明答案是 唯一 的。&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;异或xor&#34;&gt;异或（Xor）&lt;/h1&gt;
 &lt;h2 id=&#34;知识&#34;&gt;知识&lt;/h2&gt;
 &lt;ul&gt;
@@ -39,14 +624,71 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;例题&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;
-&lt;li&gt;对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）&lt;/li&gt;
-&lt;li&gt;注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况&lt;/li&gt;
-&lt;li&gt;通过 DFS，在返回上一层时更新当前结点的最优解&lt;/li&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;交换律&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;结合律&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; (b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b) &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;自反性&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，&lt;/span&gt;a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;​&lt;/span&gt;传递性&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt;若 a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; c&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，&lt;/span&gt;则 a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; b &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c 且 b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;⊕&lt;/span&gt; c
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;本质：A⊕B=(A∧¬B)∨(¬A∧B)&lt;/li&gt;
+&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;例题1汉明距离&#34;&gt;&lt;a href=&#34;https://leetcode.cn/problems/hamming-distance/description/&#34;&gt;例题1:汉明距离&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。给你两个整数 x 和 y，计算并返回它们之间的汉明距离。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算 x 和 y 之间的汉明距离，可以先计算 x⊕y，然后统计结果中等于 1 的位数&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心代码模式&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        return __builtin_popcount(x ^ y);
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题2找出前缀异或的原始数组&#34;&gt;&lt;a href=&#34;https://leetcode.cn/problems/find-the-original-array-of-prefix-xor/description/&#34;&gt;例题2:找出前缀异或的原始数组&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：给你一个长度为 n 的 整数 数组 pref 。找出并返回满足下述条件且长度为 n 的数组 arr ：pref[i] = arr[0] ^ arr[1] ^ &amp;hellip; ^ arr[i].注意 ^ 表示 按位异或（bitwise-xor）运算。可以证明答案是 唯一 的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类似于前缀和与差分思想，代码几乎相同&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;2&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;2&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;核心代码模式&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+class Solution {
+public:
+    vector&amp;lt;int&amp;gt; findArray(vector&amp;lt;int&amp;gt;&amp;amp; pref) {
+        vector&amp;lt;int&amp;gt; ans(pref.size());
+        ans[0] = pref[0];
+        for(int i = 1;i&amp;lt;pref.size();i&amp;#43;&amp;#43;){
+            ans[i] = pref[i]^pref[i-1];
+        }
+        return ans;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
 </content>
     </item>
     
@@ -77,7 +719,7 @@
     &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;1&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
-      
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;ACM模式&lt;/span&gt;
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
@@ -141,7 +783,7 @@ int main()
     &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;1&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
-      
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;ACM模式&lt;/span&gt;
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
