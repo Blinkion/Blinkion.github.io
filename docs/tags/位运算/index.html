@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-    <title>算法 :: CSemy&#39;s blog</title>
+    <title>位运算 :: CSemy&#39;s blog</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/" />
+<link rel="canonical" href="https://Blinkion.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" />
 
 
 
@@ -43,9 +43,9 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="算法">
+<meta property="og:title" content="位运算">
 <meta property="og:description" content="" />
-<meta property="og:url" content="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/" />
+<meta property="og:url" content="https://Blinkion.github.io/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" />
 <meta property="og:site_name" content="CSemy&#39;s blog" />
 
   
@@ -59,7 +59,7 @@
 
 
 
-  <link href="/tags/%E7%AE%97%E6%B3%95/index.xml" rel="alternate" type="application/rss+xml" title="CSemy&#39;s blog" />
+  <link href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/index.xml" rel="alternate" type="application/rss+xml" title="CSemy&#39;s blog" />
 
 
 
@@ -100,7 +100,7 @@
 
   <div class="content">
     
-  <h1>Posts for: #算法</h1>
+  <h1>Posts for: #位运算</h1>
   
   <div class="posts">
     
@@ -192,93 +192,6 @@ $$</li>
         
           <div>
             <a class="read-more button" href="/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/"> →</a>
-          </div>
-        
-      </article>
-    
-      <article class="post on-list">
-        <h1 class="post-title">
-          <a href="https://Blinkion.github.io/posts/2025-03-07-%E6%A0%91%E5%BD%A2dp%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/">树形DP：没有上司的舞会</a>
-        </h1>
-        <div class="post-meta"><time class="post-date">2025-03-07</time><span class="post-author">CSemy</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-            
-            #<a href="https://Blinkion.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
-            
-            #<a href="https://Blinkion.github.io/tags/%E6%A0%91%E5%BD%A2dp/">树形DP</a>&nbsp;
-            
-          </span>
-        
-
-        
-
-
-
-        <div class="post-content">
-          
-            <h1 id="树形动态规划tree-dp">树形动态规划（Tree DP）</h1>
-<h2 id="知识">知识</h2>
-<ul>
-<li>树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。</li>
-<li>通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。</li>
-</ul>
-<h2 id="例题"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题</a></h2>
-<p>题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
-<ul>
-<li>我们设二维dp数组代表以 i 为根的子树的所有最优解</li>
-<li>对于每个状态，都存在两种决策（为 0 代表 i 不参加舞会的情况，1 代表 i 参加舞会的情况）</li>
-<li>注意可以老板员工均不参加，所以老板和其员工的参与与否一共三种情况</li>
-<li>通过 DFS，在返回上一层时更新当前结点的最优解</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">//AC code
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn <span style="color:#f92672">=</span> <span style="color:#ae81ff">6005</span>;
-</span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> g[maxn];<span style="color:#75715e">//链式前向星存图固然把空间利用到了极致，
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//但在不卡stl时，使用vector+auto让代码更加简洁。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dp[maxn][<span style="color:#ae81ff">2</span>], a[maxn], n;<span style="color:#75715e">//dp数组第二维0表示不选取，1表示选取
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> fa)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    dp[u][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    dp[u][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> a[u];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> x : g[u])
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">!=</span> fa)
-</span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            dfs(x, u);
-</span></span><span style="display:flex;"><span>            dp[u][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> max(dp[x][<span style="color:#ae81ff">1</span>],dp[x][<span style="color:#ae81ff">0</span>]);
-</span></span><span style="display:flex;"><span>            dp[u][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> dp[x][<span style="color:#ae81ff">0</span>];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    cin <span style="color:#f92672">&gt;&gt;</span> n;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>        cin <span style="color:#f92672">&gt;&gt;</span> a[i];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> x, y;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(x<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> and y <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>        cin <span style="color:#f92672">&gt;&gt;</span> x <span style="color:#f92672">&gt;&gt;</span> y;
-</span></span><span style="display:flex;"><span>        g[x].emplace_back(y);
-</span></span><span style="display:flex;"><span>        g[y].emplace_back(x);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    dfs(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);<span style="color:#75715e">//初始入口，根节点无父亲，任意赋值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> max(dp[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], dp[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-          
-        </div>
-
-        
-          <div>
-            <a class="read-more button" href="/posts/2025-03-07-%E6%A0%91%E5%BD%A2dp%E6%B2%A1%E6%9C%89%E4%B8%8A%E5%8F%B8%E7%9A%84%E8%88%9E%E4%BC%9A/"> →</a>
           </div>
         
       </article>
