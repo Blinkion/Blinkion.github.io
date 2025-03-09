@@ -134,7 +134,6 @@
 <ul>
 <li>定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d</li>
 <li>定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c</li>
-<li>运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级</li>
 </ul>
 
 
@@ -161,7 +160,7 @@ void exgcd(int a, int b, int &amp;x, int &amp;y)
   </div>
 
 
-<h2 id="例题1青蛙的约会"><a href="https://www.luogu.com.cn/problem/P1516">例题1:青蛙的约会</a></h2>
+<h3 id="例题1青蛙的约会"><a href="https://www.luogu.com.cn/problem/P1516">例题1:青蛙的约会</a></h3>
 <p>题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。</p>
           
         </div>
@@ -282,7 +281,7 @@ public:
 <li>树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。</li>
 <li>通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。</li>
 </ul>
-<h2 id="例题没有上司的舞会"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题：没有上司的舞会</a></h2>
+<h2 id="例题1没有上司的舞会"><a href="https://ac.nowcoder.com/acm/contest/25022/1002">例题1：没有上司的舞会</a></h2>
 <p>题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。</p>
 <ul>
 <li>我们设二维dp数组代表以 i 为根的子树的所有最优解</li>
@@ -297,7 +296,7 @@ public:
     <input id="1" type="checkbox" checked />
     <label for="1">
       <span class="collapsable-code__language">cpp</span>
-      <span class="collapsable-code__title">ACM模式</span>
+      
       <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
     </label>
     <pre class="language-cpp" ><code>
@@ -340,6 +339,10 @@ int main()
 }
 </code></pre>
   </div>
+
+
+<h2 id="例题2生命之树"><a href="https://www.lanqiao.cn/problems/131">例题2：生命之树</a></h2>
+<p>题意：每棵树的每个节点上，都标了一个整数，代表这个点的和谐值。在这棵树内选出一个节点集S，使得对于S中的任意两个点a,b都通过S中的点的边连接。在这个前提下，要使得S中的点所对应的整数的和尽量大。集合S可以为空。</p>
           
         </div>
 

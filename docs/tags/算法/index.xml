@@ -18,7 +18,6 @@
 &lt;ul&gt;
 &lt;li&gt;定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d&lt;/li&gt;
 &lt;li&gt;定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c&lt;/li&gt;
-&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -45,14 +44,13 @@ void exgcd(int a, int b, int &amp;amp;x, int &amp;amp;y)
   &lt;/div&gt;
 
 
-&lt;h2 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;进阶数论一&#34;&gt;进阶数论（一）&lt;/h1&gt;
 &lt;h2 id=&#34;不定方程&#34;&gt;不定方程&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d&lt;/li&gt;
 &lt;li&gt;定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c&lt;/li&gt;
-&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -79,7 +77,7 @@ void exgcd(int a, int b, int &amp;amp;x, int &amp;amp;y)
   &lt;/div&gt;
 
 
-&lt;h2 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;直接使用exgcd&lt;/li&gt;
@@ -135,7 +133,7 @@ int main()
 &lt;li&gt;如果一个线性同余方程 ax ≡ 1 (mod b)，则 x 称为 a mod b 的逆元，记作 a^(-1)&lt;/li&gt;
 &lt;li&gt;若 p 为素数，gcd(a, p) = 1，则 a^(p - 1) ≡ 1 (mod p)。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;例题2模意义下的乘法逆元&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P3811&#34;&gt;例题2:模意义下的乘法逆元&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;例题2模意义下的乘法逆元&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P3811&#34;&gt;例题2:模意义下的乘法逆元&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;题意：给定 n,p 求 1∼n 中所有整数在模 p 意义下的乘法逆元。这里 a 模 p 的乘法逆元定义为 ax≡1(mod p) 的解。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;线性算法&lt;/li&gt;
@@ -332,7 +330,7 @@ public:
 &lt;li&gt;树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。&lt;/li&gt;
 &lt;li&gt;通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;例题没有上司的舞会&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题：没有上司的舞会&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;例题1没有上司的舞会&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题1：没有上司的舞会&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;
@@ -347,7 +345,7 @@ public:
     &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;1&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
-      &lt;span class=&#34;collapsable-code__title&#34;&gt;ACM模式&lt;/span&gt;
+      
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
@@ -389,14 +387,18 @@ int main()
     cout &amp;lt;&amp;lt; max(dp[1][0], dp[1][1]);
 }
 &lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;</description>
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题2生命之树&#34;&gt;&lt;a href=&#34;https://www.lanqiao.cn/problems/131&#34;&gt;例题2：生命之树&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：每棵树的每个节点上，都标了一个整数，代表这个点的和谐值。在这棵树内选出一个节点集S，使得对于S中的任意两个点a,b都通过S中的点的边连接。在这个前提下，要使得S中的点所对应的整数的和尽量大。集合S可以为空。&lt;/p&gt;</description>
       <content>&lt;h1 id=&#34;树形动态规划tree-dp&#34;&gt;树形动态规划（Tree DP）&lt;/h1&gt;
 &lt;h2 id=&#34;知识&#34;&gt;知识&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。&lt;/li&gt;
 &lt;li&gt;通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;例题没有上司的舞会&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题：没有上司的舞会&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;例题1没有上司的舞会&#34;&gt;&lt;a href=&#34;https://ac.nowcoder.com/acm/contest/25022/1002&#34;&gt;例题1：没有上司的舞会&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;题意：某大学有 n 个职员，编号为 1 ~ N。他们之间有从属关系，也就是说他们的关系就像一棵以校长为根的树，父结点就是子结点的直接上司。现在有个周年庆宴会，宴会每邀请来一个职员都会增加一定的快乐指数 a_i，但是呢，如果某个职员的直接上司来参加舞会了，那么这个职员就无论如何也不肯来参加舞会了。所以，请你编程计算，邀请哪些职员可以使快乐指数最大，求最大的快乐指数。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我们设二维dp数组代表以 i 为根的子树的所有最优解&lt;/li&gt;
@@ -411,7 +413,7 @@ int main()
     &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
     &lt;label for=&#34;1&#34;&gt;
       &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
-      &lt;span class=&#34;collapsable-code__title&#34;&gt;ACM模式&lt;/span&gt;
+      
       &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
     &lt;/label&gt;
     &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
@@ -451,6 +453,63 @@ int main()
     }
     dfs(1, -1);//初始入口，根节点无父亲，任意赋值
     cout &amp;lt;&amp;lt; max(dp[1][0], dp[1][1]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题2生命之树&#34;&gt;&lt;a href=&#34;https://www.lanqiao.cn/problems/131&#34;&gt;例题2：生命之树&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：每棵树的每个节点上，都标了一个整数，代表这个点的和谐值。在这棵树内选出一个节点集S，使得对于S中的任意两个点a,b都通过S中的点的边连接。在这个前提下，要使得S中的点所对应的整数的和尽量大。集合S可以为空。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;树形dp，即在树的dfs过程中进行dp计算&lt;/li&gt;
+&lt;li&gt;因为n-1条边构成的树不会出现环，所以只要保证不搜索父节点&lt;/li&gt;
+&lt;li&gt;那么不论从任意一个节点开始递归都必定是一条不断往下扩散的不会重复的路径&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;2&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;2&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+#include &amp;lt;bits/stdc&amp;#43;&amp;#43;.h&amp;gt;
+using namespace std;
+const int maxn = 100005;
+int dp[maxn];
+vector&amp;lt;int&amp;gt; g[maxn];
+void dfs(int u, int fa)
+{
+    for (auto x : g[u])
+    {
+        if (x != fa)
+        {
+            dfs(x, u);
+            dp[u] &amp;#43;= max(0, dp[x]);
+        }
+    }
+}
+int main()
+{
+    int n;
+    cin &amp;gt;&amp;gt; n;
+    for (int i = 1; i &amp;lt;= n; i&amp;#43;&amp;#43;)
+        cin &amp;gt;&amp;gt; dp[i];
+    for (int i = 1; i &amp;lt;= n - 1; i&amp;#43;&amp;#43;)
+    {
+        int u, v;
+        cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v;
+        g[u].emplace_back(v);
+        g[v].emplace_back(u);
+    }
+    int ans = 0;
+    dfs(1, 0);
+    for (int i = 1; i &amp;lt;= n; i&amp;#43;&amp;#43;)
+        ans = max(ans, dp[i]);
+    cout &amp;lt;&amp;lt; ans;
 }
 &lt;/code&gt;&lt;/pre&gt;
   &lt;/div&gt;
