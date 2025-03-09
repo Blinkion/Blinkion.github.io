@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数论 on CSemy&#39;s blog</title>
+    <link>https://Blinkion.github.io/tags/%E6%95%B0%E8%AE%BA/</link>
+    <description>Recent content in 数论 on CSemy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Blinkion.github.io/tags/%E6%95%B0%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>不定方程与逆元：进阶数论的魅力</title>
+      <link>https://Blinkion.github.io/posts/2025-03-09-%E4%B8%8D%E5%AE%9A%E6%96%B9%E7%A8%8B%E4%B8%8E%E9%80%86%E5%85%83%E8%BF%9B%E9%98%B6%E6%95%B0%E8%AE%BA%E7%9A%84%E9%AD%85%E5%8A%9B/</link>
+      <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://Blinkion.github.io/posts/2025-03-09-%E4%B8%8D%E5%AE%9A%E6%96%B9%E7%A8%8B%E4%B8%8E%E9%80%86%E5%85%83%E8%BF%9B%E9%98%B6%E6%95%B0%E8%AE%BA%E7%9A%84%E9%AD%85%E5%8A%9B/</guid>
+      <description>&lt;h1 id=&#34;进阶数论一&#34;&gt;进阶数论（一）&lt;/h1&gt;
+&lt;h2 id=&#34;不定方程&#34;&gt;不定方程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d&lt;/li&gt;
+&lt;li&gt;定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c&lt;/li&gt;
+&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;扩展欧几里得算法&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+void exgcd(int a, int b, int &amp;amp;x, int &amp;amp;y)
+{
+    if (b == 0)
+    {
+        x = 1, y = 0;
+        return;
+    }
+    exgcd(b, a % b, y, x);
+    y -= a / b * x;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。&lt;/p&gt;</description>
+      <content>&lt;h1 id=&#34;进阶数论一&#34;&gt;进阶数论（一）&lt;/h1&gt;
+&lt;h2 id=&#34;不定方程&#34;&gt;不定方程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d&lt;/li&gt;
+&lt;li&gt;定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c&lt;/li&gt;
+&lt;li&gt;运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;1&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;1&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__title&#34;&gt;扩展欧几里得算法&lt;/span&gt;
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+void exgcd(int a, int b, int &amp;amp;x, int &amp;amp;y)
+{
+    if (b == 0)
+    {
+        x = 1, y = 0;
+        return;
+    }
+    exgcd(b, a % b, y, x);
+    y -= a / b * x;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;例题1青蛙的约会&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1516&#34;&gt;例题1:青蛙的约会&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接使用exgcd&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;2&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;2&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+#include &amp;lt;cstdio&amp;gt;
+#define LL long long
+LL x, y, m, n, l, a, b, c, x0, y0, g, tmp;
+void exgcd(LL a, LL b)
+{
+    if (!b)
+    {
+        x0 = 1;
+        g = a;
+        return;
+    } // 顺便求gcd
+    exgcd(b, a % b);
+    tmp = x0;
+    x0 = y0;
+    y0 = tmp - a / b * y0;
+}
+int main()
+{
+    scanf(&amp;#34;%lld%lld%lld%lld%lld&amp;#34;, &amp;amp;x, &amp;amp;y, &amp;amp;m, &amp;amp;n, &amp;amp;l);
+    a = n - m;
+    b = l;
+    c = x - y;
+    if (a &amp;lt; 0)
+        a = -a, c = -c; // 处理a为负数情况
+    exgcd(a, b);
+    if (c % g)
+        puts(&amp;#34;Impossible&amp;#34;);
+    else
+        printf(&amp;#34;%lld\n&amp;#34;, (c / g * x0 % (b / g) &amp;#43; b / g) % (b / g)); // 求最小非负整数解
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+&lt;h2 id=&#34;逆元&#34;&gt;逆元&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;如果一个线性同余方程 ax ≡ 1 (mod b)，则 x 称为 a mod b 的逆元，记作 a^(-1)&lt;/li&gt;
+&lt;li&gt;若 p 为素数，gcd(a, p) = 1，则 a^(p - 1) ≡ 1 (mod p)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;例题2模意义下的乘法逆元&#34;&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P3811&#34;&gt;例题2:模意义下的乘法逆元&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题意：给定 n,p 求 1∼n 中所有整数在模 p 意义下的乘法逆元。这里 a 模 p 的乘法逆元定义为 ax≡1(mod p) 的解。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线性算法&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+  &lt;div class=&#34;collapsable-code&#34;&gt;
+    &lt;input id=&#34;3&#34; type=&#34;checkbox&#34; checked /&gt;
+    &lt;label for=&#34;3&#34;&gt;
+      &lt;span class=&#34;collapsable-code__language&#34;&gt;cpp&lt;/span&gt;
+      
+      &lt;span class=&#34;collapsable-code__toggle&#34; data-label-expand=&#34;Show&#34; data-label-collapse=&#34;Hide&#34;&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;pre class=&#34;language-cpp&#34; &gt;&lt;code&gt;
+#include &amp;lt;bits/stdc&amp;#43;&amp;#43;.h&amp;gt;
+#define N 3000010
+typedef long long ll;
+using namespace std;
+int inv[N], n, p;
+inline int read()
+{
+    int f = 1, x = 0;
+    char ch;
+    do
+    {
+        ch = getchar();
+        if (ch == &amp;#39;-&amp;#39;)
+            f = -1;
+    } while (ch &amp;lt; &amp;#39;0&amp;#39; || ch &amp;gt; &amp;#39;9&amp;#39;);
+    do
+    {
+        x = x * 10 &amp;#43; ch - &amp;#39;0&amp;#39;;
+        ch = getchar();
+    } while (ch &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; ch &amp;lt;= &amp;#39;9&amp;#39;);
+    return f * x;
+}
+int main()
+{
+    n = read();
+    p = read();
+    inv[1] = 1;
+    puts(&amp;#34;1&amp;#34;);
+    for (int i = 2; i &amp;lt;= n; i&amp;#43;&amp;#43;)
+    {
+        inv[i] = (ll)(p - p / i) * inv[p % i] % p;
+        printf(&amp;#34;%d\n&amp;#34;, inv[i]);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+
+</content>
+    </item>
+    
+  </channel>
+</rss>

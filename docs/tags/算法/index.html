@@ -109,6 +109,72 @@
     
       <article class="post on-list">
         <h1 class="post-title">
+          <a href="https://Blinkion.github.io/posts/2025-03-09-%E4%B8%8D%E5%AE%9A%E6%96%B9%E7%A8%8B%E4%B8%8E%E9%80%86%E5%85%83%E8%BF%9B%E9%98%B6%E6%95%B0%E8%AE%BA%E7%9A%84%E9%AD%85%E5%8A%9B/">不定方程与逆元：进阶数论的魅力</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-03-09</time><span class="post-author">CSemy</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+            
+            #<a href="https://Blinkion.github.io/tags/%E6%95%B0%E8%AE%BA/">数论</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+
+        <div class="post-content">
+          
+            <h1 id="进阶数论一">进阶数论（一）</h1>
+<h2 id="不定方程">不定方程</h2>
+<ul>
+<li>定理1：对于整数a,b，设他们的最大公约数gcd(a,b) = d，一定存在一组整数(x,y)使得ax+by=d</li>
+<li>定理2：对于整数a,b,c，ax+by=c有整数解当且仅当gcd(a,b)|c</li>
+<li>运算优先级：在编程中异或运算符优先级通常低于算术运算符，建议用括号明确优先级</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      <span class="collapsable-code__title">扩展欧几里得算法</span>
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+void exgcd(int a, int b, int &amp;x, int &amp;y)
+{
+    if (b == 0)
+    {
+        x = 1, y = 0;
+        return;
+    }
+    exgcd(b, a % b, y, x);
+    y -= a / b * x;
+}
+</code></pre>
+  </div>
+
+
+<h2 id="例题1青蛙的约会"><a href="https://www.luogu.com.cn/problem/P1516">例题1:青蛙的约会</a></h2>
+<p>题意：两只青蛙分别叫做青蛙 A 和青蛙 B，并且规定纬度线上东经 0 度处为原点，由东往西为正方向，单位长度 1 米，这样我们就得到了一条首尾相接的数轴。设青蛙 A 的出发点坐标是 x，青蛙 B 的出发点坐标是 y。青蛙 A 一次能跳 m 米，青蛙 B 一次能跳 n 米，两只青蛙跳一次所花费的时间相同。纬度线总长 L 米。现在要你求出它们跳了几次以后才会碰面。</p>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button" href="/posts/2025-03-09-%E4%B8%8D%E5%AE%9A%E6%96%B9%E7%A8%8B%E4%B8%8E%E9%80%86%E5%85%83%E8%BF%9B%E9%98%B6%E6%95%B0%E8%AE%BA%E7%9A%84%E9%AD%85%E5%8A%9B/"> →</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
           <a href="https://Blinkion.github.io/posts/2025-03-08-%E5%BC%82%E6%88%96%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%9D%E6%8E%A2/">异或：位运算初探</a>
         </h1>
         <div class="post-meta"><time class="post-date">2025-03-08</time><span class="post-author">CSemy</span></div>
