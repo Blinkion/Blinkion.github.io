@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>经典DP：LCS永不过时 :: CSemy&#39;s blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="最长公共子序列（LCS） 知识 最长公共子序列（Longest Common Subsequence, LCS）是指两个或多个序列中，按顺序出现但不要求连续的最长公共子序列 例如，字符串 &ldquo;aabcd&rdquo; 和 &ldquo;12abcabcd&rdquo; 的 LCS 是 &ldquo;abcd&rdquo; 子序列不要求元素连续，仅需保持相对顺序 可能存在多个不同的 LCS，但长度唯一 动态规划是解决 LCS 问题的核心方法，其核心思想是通过状态转移方程递推求解 定义 dp[i][j] 表示序列 X 的前 i 个元素和序列 Y 的前 j 个元素的 LCS 长度 当输入为排列时，可将 LCS 问题转换为 LIS 问题，利用二分查找将时间复杂度优化至 O(n log n) 例题1：密码脱落 题意：这些密码是由 A、B、C、D 四种植物的种子串成的序列。仔细分析发现，这些密码串当初应该是前后对称的（也就是我们说的镜像串）。由于年代久远，其中许多种子脱落了，因而可能会失去镜像的特征。你的任务是：给定一个现在看到的密码串，计算一下从当初的状态，它要至少脱落多少个种子，才可能会变成现在的样子。
+转化题意求反转串和正串的最长公共子序列 cpp#include &lt;bits/stdc&#43;&#43;.h&gt;using namespace std;int main(int argc, char const *argv[]){char s[1020];cin &gt;&gt; s;int len = strlen(s);int dp[len][len];memset(dp, 0, sizeof(dp));for (int i = 0; i &lt; len; i&#43;&#43;){dp[i][i] = 1;}for (int i = len - 1; i &gt;= 0; i--){for (int j = i &#43; 1; j &lt; len; j&#43;&#43;){if (s[i] == s[j]){dp[i][j] = dp[i &#43; 1][j - 1] &#43; 2;}else{dp[i][j] = max(dp[i &#43; 1][j], dp[i][j - 1]);}}}cout &lt;&lt; len - dp[0][len - 1];return 0;}例题2：编辑距离 题意：给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。 你可以对一个单词进行如下三种操作：插入一个字符\删除一个字符\替换一个字符
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://Blinkion.github.io/posts/2025-03-10-%E7%BB%8F%E5%85%B8dplcs%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6-/" />
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://Blinkion.github.io/styles.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="https://Blinkion.github.io/img/theme-colors/orange.png">
+  <link rel="apple-touch-icon" href="https://Blinkion.github.io/img/theme-colors/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="经典DP：LCS永不过时">
+<meta property="og:description" content="最长公共子序列（LCS） 知识 最长公共子序列（Longest Common Subsequence, LCS）是指两个或多个序列中，按顺序出现但不要求连续的最长公共子序列 例如，字符串 &ldquo;aabcd&rdquo; 和 &ldquo;12abcabcd&rdquo; 的 LCS 是 &ldquo;abcd&rdquo; 子序列不要求元素连续，仅需保持相对顺序 可能存在多个不同的 LCS，但长度唯一 动态规划是解决 LCS 问题的核心方法，其核心思想是通过状态转移方程递推求解 定义 dp[i][j] 表示序列 X 的前 i 个元素和序列 Y 的前 j 个元素的 LCS 长度 当输入为排列时，可将 LCS 问题转换为 LIS 问题，利用二分查找将时间复杂度优化至 O(n log n) 例题1：密码脱落 题意：这些密码是由 A、B、C、D 四种植物的种子串成的序列。仔细分析发现，这些密码串当初应该是前后对称的（也就是我们说的镜像串）。由于年代久远，其中许多种子脱落了，因而可能会失去镜像的特征。你的任务是：给定一个现在看到的密码串，计算一下从当初的状态，它要至少脱落多少个种子，才可能会变成现在的样子。
+转化题意求反转串和正串的最长公共子序列 cpp#include &lt;bits/stdc&#43;&#43;.h&gt;using namespace std;int main(int argc, char const *argv[]){char s[1020];cin &gt;&gt; s;int len = strlen(s);int dp[len][len];memset(dp, 0, sizeof(dp));for (int i = 0; i &lt; len; i&#43;&#43;){dp[i][i] = 1;}for (int i = len - 1; i &gt;= 0; i--){for (int j = i &#43; 1; j &lt; len; j&#43;&#43;){if (s[i] == s[j]){dp[i][j] = dp[i &#43; 1][j - 1] &#43; 2;}else{dp[i][j] = max(dp[i &#43; 1][j], dp[i][j - 1]);}}}cout &lt;&lt; len - dp[0][len - 1];return 0;}例题2：编辑距离 题意：给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。 你可以对一个单词进行如下三种操作：插入一个字符\删除一个字符\替换一个字符
+" />
+<meta property="og:url" content="https://Blinkion.github.io/posts/2025-03-10-%E7%BB%8F%E5%85%B8dplcs%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6-/" />
+<meta property="og:site_name" content="CSemy&#39;s blog" />
+
+  
+    <meta property="og:image" content="img/favicon/%!s(&lt;nil&gt;).png">
+  
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-03-10 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</head>
+<body class="">
+
+
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://Blinkion.github.io/">
+  <div class="logo">
+    re-Terminal
+  </div>
+</a>
+
+    </div>
+    
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://Blinkion.github.io/posts/2025-03-10-%E7%BB%8F%E5%85%B8dplcs%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6-/">经典DP：LCS永不过时</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-03-10</time><span class="post-author">CSemy</span>
+    
+</div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+      
+      #<a href="https://Blinkion.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
+      
+      #<a href="https://Blinkion.github.io/tags/%E6%95%B0%E7%BB%84/">数组</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="最长公共子序列lcs">最长公共子序列（LCS）<a href="#最长公共子序列lcs" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="知识">知识<a href="#知识" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li>最长公共子序列（Longest Common Subsequence, LCS）是指两个或多个序列中，按顺序出现但不要求连续的最长公共子序列</li>
+<li>例如，字符串 &ldquo;aabcd&rdquo; 和 &ldquo;12abcabcd&rdquo; 的 LCS 是 &ldquo;abcd&rdquo;</li>
+<li>子序列不要求元素连续，仅需保持相对顺序</li>
+<li>可能存在多个不同的 LCS，但长度唯一</li>
+<li>动态规划是解决 LCS 问题的核心方法，其核心思想是通过状态转移方程递推求解</li>
+<li>定义 dp[i][j] 表示序列 X 的前 i 个元素和序列 Y 的前 j 个元素的 LCS 长度</li>
+<li>当输入为排列时，可将 LCS 问题转换为 LIS 问题，利用二分查找将时间复杂度优化至 O(n log n)</li>
+</ul>
+<h2 id="例题1密码脱落"><a href="https://www.lanqiao.cn/problems/124">例题1：密码脱落</a><a href="#例题1密码脱落" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>题意：这些密码是由 A、B、C、D 四种植物的种子串成的序列。仔细分析发现，这些密码串当初应该是前后对称的（也就是我们说的镜像串）。由于年代久远，其中许多种子脱落了，因而可能会失去镜像的特征。你的任务是：给定一个现在看到的密码串，计算一下从当初的状态，它要至少脱落多少个种子，才可能会变成现在的样子。</p>
+<ul>
+<li>转化题意求反转串和正串的最长公共子序列</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+int main(int argc, char const *argv[])
+{
+    char s[1020];
+    cin &gt;&gt; s;
+    int len = strlen(s);
+    int dp[len][len];
+    memset(dp, 0, sizeof(dp));
+    for (int i = 0; i &lt; len; i&#43;&#43;)
+    {
+        dp[i][i] = 1;
+    }
+
+    for (int i = len - 1; i &gt;= 0; i--)
+    {
+        for (int j = i &#43; 1; j &lt; len; j&#43;&#43;)
+        {
+            if (s[i] == s[j])
+            {
+                dp[i][j] = dp[i &#43; 1][j - 1] &#43; 2;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i &#43; 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    cout &lt;&lt; len - dp[0][len - 1];
+
+    return 0;
+}
+</code></pre>
+  </div>
+
+
+<h2 id="例题2编辑距离"><a href="https://leetcode.cn/problems/edit-distance/description/">例题2：编辑距离</a><a href="#例题2编辑距离" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>题意：给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。
+你可以对一个单词进行如下三种操作：插入一个字符\删除一个字符\替换一个字符</p>
+<ul>
+<li>增，dp[i][j] = dp[i][j - 1] + 1</li>
+<li>删，dp[i][j] = dp[i - 1][j] + 1</li>
+<li>改，dp[i][j] = dp[i - 1][j - 1] + 1</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="2" type="checkbox" checked />
+    <label for="2">
+      <span class="collapsable-code__language">cpp</span>
+      <span class="collapsable-code__title">核心代码模式</span>
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int m = word1.size(), n = word2.size();
+
+        vector&lt;vector&lt;int&gt;&gt; dp(m&#43;1, vector&lt;int&gt;(n&#43;1));
+
+        for(int i=0;i&lt;=m;i&#43;&#43;){
+            dp[i][0] = i;
+        }
+
+        for(int j=0;j&lt;=n;j&#43;&#43;){
+            dp[0][j] = j;
+        }
+
+        for(int i=1;i&lt;=m;i&#43;&#43;){
+            for(int j=1;j&lt;=n;j&#43;&#43;){
+                if(word1[i-1] == word2[j-1]){
+                    dp[i][j] = dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j] = min(dp[i-1][j],min(dp[i-1][j-1],dp[i][j-1])) &#43;1;
+                }
+            }
+        }
+        return dp[m][n];
+    }
+};
+</code></pre>
+  </div>
+
+
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/mirus-ua/hugo-theme-re-terminal" target="_blank">Theme</a> made by <a href="https://github.com/mirus-ua" target="_blank">Mirus</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

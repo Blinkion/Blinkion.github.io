@@ -108,6 +108,110 @@
     
       <article class="post on-list">
         <h1 class="post-title">
+          <a href="https://Blinkion.github.io/posts/2025-03-10-%E7%BB%8F%E5%85%B8dplcs%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6-/">经典DP：LCS永不过时</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-03-10</time><span class="post-author">CSemy</span>
+          
+
+        </div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://Blinkion.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+            
+            #<a href="https://Blinkion.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>&nbsp;
+            
+            #<a href="https://Blinkion.github.io/tags/%E6%95%B0%E7%BB%84/">数组</a>&nbsp;
+            
+          </span>
+        
+
+        
+
+
+
+        <div class="post-content">
+          
+            <h1 id="最长公共子序列lcs">最长公共子序列（LCS）</h1>
+<h2 id="知识">知识</h2>
+<ul>
+<li>最长公共子序列（Longest Common Subsequence, LCS）是指两个或多个序列中，按顺序出现但不要求连续的最长公共子序列</li>
+<li>例如，字符串 &ldquo;aabcd&rdquo; 和 &ldquo;12abcabcd&rdquo; 的 LCS 是 &ldquo;abcd&rdquo;</li>
+<li>子序列不要求元素连续，仅需保持相对顺序</li>
+<li>可能存在多个不同的 LCS，但长度唯一</li>
+<li>动态规划是解决 LCS 问题的核心方法，其核心思想是通过状态转移方程递推求解</li>
+<li>定义 dp[i][j] 表示序列 X 的前 i 个元素和序列 Y 的前 j 个元素的 LCS 长度</li>
+<li>当输入为排列时，可将 LCS 问题转换为 LIS 问题，利用二分查找将时间复杂度优化至 O(n log n)</li>
+</ul>
+<h2 id="例题1密码脱落"><a href="https://www.lanqiao.cn/problems/124">例题1：密码脱落</a></h2>
+<p>题意：这些密码是由 A、B、C、D 四种植物的种子串成的序列。仔细分析发现，这些密码串当初应该是前后对称的（也就是我们说的镜像串）。由于年代久远，其中许多种子脱落了，因而可能会失去镜像的特征。你的任务是：给定一个现在看到的密码串，计算一下从当初的状态，它要至少脱落多少个种子，才可能会变成现在的样子。</p>
+<ul>
+<li>转化题意求反转串和正串的最长公共子序列</li>
+</ul>
+
+
+
+  <div class="collapsable-code">
+    <input id="1" type="checkbox" checked />
+    <label for="1">
+      <span class="collapsable-code__language">cpp</span>
+      
+      <span class="collapsable-code__toggle" data-label-expand="Show" data-label-collapse="Hide"></span>
+    </label>
+    <pre class="language-cpp" ><code>
+#include &lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+int main(int argc, char const *argv[])
+{
+    char s[1020];
+    cin &gt;&gt; s;
+    int len = strlen(s);
+    int dp[len][len];
+    memset(dp, 0, sizeof(dp));
+    for (int i = 0; i &lt; len; i&#43;&#43;)
+    {
+        dp[i][i] = 1;
+    }
+
+    for (int i = len - 1; i &gt;= 0; i--)
+    {
+        for (int j = i &#43; 1; j &lt; len; j&#43;&#43;)
+        {
+            if (s[i] == s[j])
+            {
+                dp[i][j] = dp[i &#43; 1][j - 1] &#43; 2;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i &#43; 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    cout &lt;&lt; len - dp[0][len - 1];
+
+    return 0;
+}
+</code></pre>
+  </div>
+
+
+<h2 id="例题2编辑距离"><a href="https://leetcode.cn/problems/edit-distance/description/">例题2：编辑距离</a></h2>
+<p>题意：给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。
+你可以对一个单词进行如下三种操作：插入一个字符\删除一个字符\替换一个字符</p>
+          
+        </div>
+
+        
+          <div>
+            <a class="read-more button" href="/posts/2025-03-10-%E7%BB%8F%E5%85%B8dplcs%E6%B0%B8%E4%B8%8D%E8%BF%87%E6%97%B6-/"> →</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
           <a href="https://Blinkion.github.io/posts/2025-03-09-%E4%B8%8D%E5%AE%9A%E6%96%B9%E7%A8%8B%E4%B8%8E%E9%80%86%E5%85%83%E8%BF%9B%E9%98%B6%E6%95%B0%E8%AE%BA%E7%9A%84%E9%AD%85%E5%8A%9B/">不定方程与逆元：进阶数论的魅力</a>
         </h1>
         <div class="post-meta"><time class="post-date">2025-03-09</time><span class="post-author">CSemy</span>
