@@ -1,6 +1,6 @@
 ---
 title: My Blog
-toc: false
+toc: true
 comments: true
 ---
 
