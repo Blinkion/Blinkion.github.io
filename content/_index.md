@@ -1,7 +1,7 @@
 ---
 title: My Blog
 toc: false
-comments:true
+comments: true
 ---
 
 This is the landing page.
