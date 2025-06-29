@@ -49,11 +49,11 @@ params:
     base: "https://github.com/imfing/hextra-starter-template/edit/main/content"
 
   comments:
-    enable: false
+    enable: true
     type: giscus
 
     giscus:
-      repo: <repository>
-      repoId: <repository ID>
-      category: <category>
-      categoryId: <category ID>
+      repo: Blinkion/Blinkion.github.io
+      repoId: R_kgDOPCs3xA
+      category: Announcements
+      categoryId: DIC_kwDOPCs3xM4CsMQR
