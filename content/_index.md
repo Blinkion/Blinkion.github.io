@@ -13,7 +13,7 @@ comments: true
     {{< card link="knowledge" title="知识" icon="book-open" >}}
 {{< /cards >}}
 
-## 关于
+## 寄语
 
 苟有恒，何必三更起五更眠；
 最无益，莫过一日曝十日寒。
