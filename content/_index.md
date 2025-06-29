@@ -1,15 +1,13 @@
 ---
-title: My Blog
+title: CSemy的博客
 toc: true
 comments: true
 ---
 
-This is the landing page.
-
-## Explore
+## 模块
 
 {{< cards >}}
-  {{< card link="docs" title="Docs" icon="book-open" >}}
-  {{< card link="about" title="About" icon="user" >}}
+    {{< card link="feeling" title="感悟" icon="heart" >}}
+    {{< card link="knowledge" title="知识" icon="book-open" >}}
 {{< /cards >}}
 
