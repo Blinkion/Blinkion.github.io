@@ -1,8 +1,8 @@
 ---
-title: 从春天出发：奔赴山海之约
+title: spring-and-start
 type: docs
 prev: /
-next: docs/folder/
+next: feeling/folder/
 ---
 
 # 草木蔓发，春山可望
