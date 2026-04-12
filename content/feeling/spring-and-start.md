@@ -2,7 +2,7 @@
 title: spring-and-start
 type: docs
 prev: /
-next: feeling/folder/
+next: feeling/passed-ai-thought
 ---
 
 # 草木蔓发，春山可望
