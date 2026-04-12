@@ -3,6 +3,12 @@ public/
 resources/
 .hugo_build.lock
 
-# Editor
-.vscode/
-.gitignore
+# Local caches
+.gh-cache/
+
+# OS files
+.DS_Store
+
+# Editor settings
+.vscode/*
+!.vscode/extensions.json
